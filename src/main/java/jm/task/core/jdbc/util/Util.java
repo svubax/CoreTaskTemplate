@@ -5,13 +5,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Util {
-    public static Connection connection;
+    private static final String url = "jdbc:mysql://localhost:3306/test";
+    private static final String user = "root";
+    private static final String password ="test";
+    private static Connection connection;
     private Util(){}
-    static {
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","test");
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public static Connection getConnection(){
+        if (connection == null){
+            try {
+                connection = DriverManager.getConnection( url, user,password);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return connection;
     }
 }
