@@ -23,7 +23,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
     public void dropUsersTable() {
         try (Statement statement = Util.getConnection().createStatement()) {
-            statement.executeUpdate("DROP TABLE IF EXISTS users ");
+            statement.executeUpdate("DROP TABLE IF EXISTS users");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,7 +63,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
     public void cleanUsersTable() {
         try (Statement statement = Util.getConnection().createStatement()) {
-            statement.executeUpdate("TRUNCATE TABLE users ");
+            statement.executeUpdate("TRUNCATE TABLE users");
         } catch (SQLException e) {
             e.printStackTrace();
         }
