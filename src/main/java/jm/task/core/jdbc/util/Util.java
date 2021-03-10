@@ -5,12 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Util {
-    private static Connection connection;
-    private Util(){}
-    public static Connection getConnection() throws SQLException {
-        if (connection == null){
-            connection = DriverManager.getConnection( "jdbc:mysql://localhost:3306/test", "root","test");
-        }
+    private static Util util;
+    private final Connection connection;
+    private Util() throws SQLException {
+        connection = DriverManager.getConnection( "jdbc:mysql://localhost:3306/test", "root","test");
+    }
+    public Connection getConnection() {
         return connection;
+    }
+    public static Util getUtil() throws SQLException {
+        if (util == null) {
+            util = new Util();
+        }
+        return util;
     }
 }
