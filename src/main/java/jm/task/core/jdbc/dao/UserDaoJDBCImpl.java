@@ -17,11 +17,16 @@ public class UserDaoJDBCImpl implements UserDao {
                             "lastName CHAR (100) NOT NULL, " +
                             "age TINYINT NOT NULL, " +
                             "PRIMARY KEY (id))");
+        } catch (SQLException e){
+            throw e;
         }
     }
     public void dropUsersTable() throws SQLException {
         try (Statement statement = Util.getUtil().getConnection().createStatement()) {
             statement.executeUpdate("DROP TABLE IF EXISTS users");
+        }
+        catch (SQLException e){
+            throw e;
         }
     }
     public void saveUser(String name, String lastName, byte age) throws SQLException {
@@ -31,10 +36,16 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.setByte(3, age);
             statement.executeUpdate();
         }
+        catch (SQLException e){
+            throw e;
+        }
     }
     public void removeUserById(long id) throws SQLException {
         try (Statement statement = Util.getUtil().getConnection().createStatement()) {
             statement.executeUpdate("DELETE FROM users WHERE id=" + id);
+        }
+        catch (SQLException e){
+            throw e;
         }
     }
     public List<User> getAllUsers() throws SQLException {
@@ -48,10 +59,16 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             return users;
         }
+        catch (SQLException e){
+            throw e;
+        }
     }
     public void cleanUsersTable() throws SQLException {
         try (Statement statement = Util.getUtil().getConnection().createStatement()) {
             statement.executeUpdate("TRUNCATE TABLE users");
+        }
+        catch (SQLException e){
+            throw e;
         }
     }
 }
